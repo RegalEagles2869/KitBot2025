@@ -5,6 +5,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 public class DriveSubsystem extends SubsystemBase{
     
@@ -22,10 +23,10 @@ public class DriveSubsystem extends SubsystemBase{
         // leftMotor2.setNeutralMode(NeutralMode.Coast);
         // rightMotor1.setNeutralMode(NeutralMode.Coast);
         // rightMotor2.setNeutralMode(NeutralMode.Coast);
-        leftMotor1 = new WPI_TalonSRX(3);
-        leftMotor2 = new WPI_TalonSRX(4);
-        rightMotor1 = new WPI_TalonSRX(6);
-        rightMotor2 = new WPI_TalonSRX(5);
+        leftMotor1 = new WPI_TalonSRX(Constants.MotorIDConstants.motorFrontLeft);
+        leftMotor2 = new WPI_TalonSRX(Constants.MotorIDConstants.motorBackLeft);
+        rightMotor1 = new WPI_TalonSRX(Constants.MotorIDConstants.motorFrontRight);
+        rightMotor2 = new WPI_TalonSRX(Constants.MotorIDConstants.motorBackRight);
         leftMotor1.follow(leftMotor2);
         rightMotor1.follow(rightMotor2);
         drive = new DifferentialDrive(leftMotor1, rightMotor1);
