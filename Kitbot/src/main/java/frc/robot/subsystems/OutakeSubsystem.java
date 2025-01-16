@@ -10,7 +10,10 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
  
-
+/**
+ * Outake Subsystem -- Controls Outake of KIT BOT and adds motor1 speed functionality
+ * @author idk
+ */
 public class OutakeSubsystem extends SubsystemBase {
       private WPI_TalonSRX motor1;
 
