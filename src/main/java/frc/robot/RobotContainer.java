@@ -20,7 +20,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final DriveSubsystem driveSubsytem = new DriveSubsystem();
+  private final DriveSubsystem driveSubsytem = DriveSubsystem.getInstance();
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
   private final CommandXboxController m_driverController =
@@ -28,9 +28,9 @@ public class RobotContainer {
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+    driveSubsytem.setDefaultCommand(new DefaultDriveCommand());
     // Configure the trigger bindings
     configureBindings();
-
   }
 
   /**
@@ -43,6 +43,39 @@ public class RobotContainer {
    * joysticks}.
    */
   private void configureBindings() {
+    driveSubsytem.setDefaultCommand(new DefaultDriveCommand());
+    System.out.println("fish");
+    System.out.println("fish");
+    System.out.println("fish");
+    System.out.println("fish");
+    System.out.println("fish");
+    System.out.println("fish");
+    System.out.println("fish");
+    System.out.println("fish");
+    System.out.println("fish");
+    System.out.println("fish");
+    System.out.println("fish");
+    System.out.println("fish");
+    System.out.println("fish");
+    System.out.println("fish");
+    System.out.println("fish");
+    System.out.println("fish");
+    System.out.println("fish");
+    System.out.println("fish");
+    System.out.println("fish");
+    System.out.println("fish");
+    System.out.println("fish");
+    System.out.println("fish");
+    System.out.println("fish");
+    System.out.println("fish");
+    System.out.println("fish");
+    System.out.println("fish");
+    System.out.println("fish");
+    System.out.println("fish");
+    System.out.println("fish");
+    System.out.println("fish");
+    System.out.println("fish");
+    System.out.println("fish");
     Inputs.getGotoGoodPosition().onTrue(new SetPosition(Constants.ClimberConstants.goodPosition));
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
 
