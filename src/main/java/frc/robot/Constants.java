@@ -22,6 +22,15 @@ public final class Constants {
     public static final int motorBackLeft = 2;
     public static final int motorBackRight = 3;
     public static final int motorOutake = 4;
+    public static final int motorClimber = 0;
+  }
+
+  public static class ClimberConstants {
+    public static final double floorPosition = 0;
+    public static final double maxPosition = 0;
+    public static final double goodPositions = 0;
+    public static final double error = 1;
+    public static final MotorConfiguration config = new MotorConfiguration(1, -1, 40, true, false);
   }
 
 }

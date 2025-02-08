@@ -25,5 +25,7 @@ public class Inputs {
         return driver1Com.x();
     }
 
-
+    public static Trigger getGoToClimberPosition() {
+        return driver1Com.x();
+    }
 }
