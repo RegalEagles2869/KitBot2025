@@ -7,7 +7,6 @@ package frc.robot;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.DefaultDriveCommand;
 import frc.robot.commands.SetPosition;
-import frc.robot.commands.SpinOutake;
 import frc.robot.subsystems.DriveSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -44,8 +43,6 @@ public class RobotContainer {
    * joysticks}.
    */
   private void configureBindings() {
-    Inputs.getOutake().whileTrue(new SpinOutake(1));
-    driveSubsytem.setDefaultCommand(new DefaultDriveCommand());
     Inputs.getGotoGoodPosition().onTrue(new SetPosition(Constants.ClimberConstants.goodPosition));
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
 
