@@ -141,6 +141,7 @@ public class MotorConfiguration {
     }
 
     public MotorConfiguration(double maxOutput, double minOutput, int currentLimit, boolean idleCoast, boolean inverted){
+        this.P = 1;
         this.maxOutput = maxOutput;
         this.minOutput = minOutput;
         this.currentLimit = currentLimit;

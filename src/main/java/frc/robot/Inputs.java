@@ -21,11 +21,17 @@ public class Inputs {
         return turn;
     }
 
-    public static Trigger getOutake() {
+    public static Trigger getGoDown() {
         return driver1Com.x();
     }
 
-    public static Trigger getGoToClimberPosition() {
-        return driver1Com.x();
+    public static Trigger getGoToGoodPos() {
+        return driver1Com.a();
+    }
+    public static Trigger getFloor() {
+        return driver1Com.b();
+    }
+    public static Trigger getGoUp() {
+        return driver1Com.y();
     }
 }

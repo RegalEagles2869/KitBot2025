@@ -5,36 +5,33 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.OutakeSubsystem;
+import frc.robot.subsystems.ClimberSubsystem;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
-public class SpinOutake extends Command {
-  private OutakeSubsystem outake;
-  private double speed;
-
-
-  /** Creates a new spinOutake. */
-  public SpinOutake(double speed) {
-    outake = OutakeSubsystem.getInstance();
-    this.speed=speed;
+public class PositionSet extends Command {
+  private ClimberSubsystem climber = ClimberSubsystem.getInstance();
+  private double position;
+  /** Creates a new . */
+  public PositionSet(double position) {
+    addRequirements(climber);
+    this.position = position;
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    outake.motor1(speed);
+    climber.setPosition(position);
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-     outake.motor1(0);
-  }
+  public void end(boolean interrupted) {}
 
   // Returns true when the command should end.
   @Override
