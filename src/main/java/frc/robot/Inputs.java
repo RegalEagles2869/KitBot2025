@@ -26,6 +26,9 @@ public class Inputs {
     }
 
     public static Trigger getGotoGoodPosition() {
+        return driver1Com.a();
+    }
+    public static Trigger getGoToBasePosition() {
         return driver1Com.y();
     }
 }

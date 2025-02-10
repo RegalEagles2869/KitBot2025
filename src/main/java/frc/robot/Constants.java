@@ -27,8 +27,8 @@ public final class Constants {
 
   public static class ClimberConstants {
     public static final double floorPosition = 0;
-    public static final double maxPosition = 5;
-    public static final double goodPosition = .5;
+    public static final double maxPosition = 10;
+    public static final double goodPosition = 1;
     public static final double error = 1;
     public static final MotorConfiguration config = new MotorConfiguration(1, -1, 40, true, false);
   }

@@ -8,11 +8,11 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.ClimberSubsystem;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
-public class ChangePosition extends Command {
+public class PositionSet extends Command {
   private ClimberSubsystem climber = ClimberSubsystem.getInstance();
   private double position;
-
-  public ChangePosition(double position) {
+  /** Creates a new fjkalfdjklsafjkdsa. */
+  public PositionSet(double position) {
     addRequirements(climber);
     this.position = position;
     // Use addRequirements() here to declare subsystem dependencies.
@@ -23,18 +23,15 @@ public class ChangePosition extends Command {
   public void initialize() {
   }
 
+  // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    climber.setSpeed(position);
-    // climber.changePosition(position);
+    climber.setPosition(position);
   }
-  
-  
+
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-    climber.setSpeed(0);
-  }
+  public void end(boolean interrupted) {}
 
   // Returns true when the command should end.
   @Override
