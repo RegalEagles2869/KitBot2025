@@ -4,20 +4,17 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix6.controls.ControlRequest;
 import com.ctre.phoenix6.controls.DutyCycleOut;
-import com.ctre.phoenix6.controls.PositionVoltage;
-import com.ctre.phoenix6.hardware.TalonFX;
+import com.revrobotics.spark.SparkMax;
+import com.revrobotics.spark.SparkLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.MotorConfiguration;
 
 public class ClimberSubsystem extends SubsystemBase {
 
-  private TalonFX motor;
+  private SparkMax motor;
   private double position;
   final DutyCycleOut request = new DutyCycleOut(0.0);
 
@@ -29,8 +26,8 @@ public class ClimberSubsystem extends SubsystemBase {
   }
   /** Creates a new CoralPivotSubsystem. */
   public ClimberSubsystem() {
-    // motor = new TalonFX(Constants.MotorIDConstants.motorClimber);
-    MotorConfiguration.configureMotor(motor, Constants.ClimberConstants.config);
+    motor = new SparkMax(Constants.MotorIDConstants.motorClimber, MotorType.kBrushless);
+    // MotorConfiguration.configureMotor(motor, Constants.ClimberConstants.config);
   }
 
   public void setPosition(double pos) {
@@ -46,7 +43,7 @@ public class ClimberSubsystem extends SubsystemBase {
   }
 
   public double getPosition() {
-    return motor.getPosition().getValueAsDouble();
+    return motor.getEncoder().getPosition();
   }
 
   public boolean isAtPosition() {
@@ -59,7 +56,8 @@ public class ClimberSubsystem extends SubsystemBase {
   public void periodic() {
     SmartDashboard.putNumber("positionLol", getPosition());
     if (position >= Constants.ClimberConstants.floorPosition && position < Constants.ClimberConstants.maxPosition) {
-      motor.setPosition(position);
+      // motor.setPosition(position);
+      motor.getEncoder().setPosition(position);
     }
   }
 }
