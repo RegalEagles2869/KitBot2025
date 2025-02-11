@@ -29,7 +29,7 @@ public class ClimberSubsystem extends SubsystemBase {
   }
   /** Creates a new CoralPivotSubsystem. */
   public ClimberSubsystem() {
-    // motor = new TalonFX(Constants.MotorIDConstants.motorClimber);
+    motor = new TalonFX(Constants.MotorIDConstants.motorClimber, "bus");
     MotorConfiguration.configureMotor(motor, Constants.ClimberConstants.config);
   }
 
