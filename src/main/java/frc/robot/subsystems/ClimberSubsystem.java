@@ -6,6 +6,12 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix6.controls.DutyCycleOut;
 import com.revrobotics.spark.SparkMax;
+import com.revrobotics.spark.config.ClosedLoopConfig.FeedbackSensor;
+import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
+import com.revrobotics.spark.config.SparkMaxConfig;
+import com.revrobotics.spark.SparkBase.ControlType;
+import com.revrobotics.spark.SparkBase.PersistMode;
+import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -17,6 +23,7 @@ public class ClimberSubsystem extends SubsystemBase {
   private SparkMax motor;
   private double position;
   final DutyCycleOut request = new DutyCycleOut(0.0);
+  private SparkMaxConfig config;
 
   private static ClimberSubsystem instance;
 
@@ -27,6 +34,13 @@ public class ClimberSubsystem extends SubsystemBase {
   /** Creates a new CoralPivotSubsystem. */
   public ClimberSubsystem() {
     motor = new SparkMax(Constants.MotorIDConstants.motorClimber, MotorType.kBrushless);
+    motor.getEncoder().setPosition(0);
+    
+    // config = new SparkMaxConfig();
+    // config.inverted(false).idleMode(IdleMode.kBrake);
+    // config.encoder.positionConversionFactor(1000).velocityConversionFactor(1000);
+    // config.closedLoop.feedbackSensor(FeedbackSensor.kPrimaryEncoder).pid(1.0, 0.0, 0.0);
+    // motor.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     // MotorConfiguration.configureMotor(motor, Constants.ClimberConstants.config);
   }
 
@@ -39,7 +53,8 @@ public class ClimberSubsystem extends SubsystemBase {
   }
 
   public void setSpeed(double speed) {
-    motor.set(speed);
+    if ((speed > 0 && motor.getEncoder().getPosition() < Constants.ClimberConstants.maxPosition) || (speed < 0 && motor.getEncoder().getPosition() > 0))
+      motor.set(speed);
   }
 
   public double getPosition() {
@@ -55,9 +70,11 @@ public class ClimberSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     SmartDashboard.putNumber("positionLol", getPosition());
+    SmartDashboard.putNumber("speedhAHA", motor.getEncoder().getVelocity());
+    SmartDashboard.putNumber("speedhAHA2", motor.getAppliedOutput());
     if (position >= Constants.ClimberConstants.floorPosition && position < Constants.ClimberConstants.maxPosition) {
-      // motor.setPosition(position);
-      motor.getEncoder().setPosition(position);
+      System.out.println(position);
+      motor.getClosedLoopController().setReference(position, ControlType.kPosition);
     }
   }
 }

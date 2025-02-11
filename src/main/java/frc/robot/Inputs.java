@@ -21,14 +21,14 @@ public class Inputs {
         return turn;
     }
 
-    public static Trigger getOutake() {
+    public static Trigger getGoDown() {
         return driver1Com.x();
     }
 
-    public static Trigger getGotoGoodPosition() {
+    public static Trigger getOuttake() {
         return driver1Com.a();
     }
-    public static Trigger getGoToBasePosition() {
+    public static Trigger getGoUp() {
         return driver1Com.y();
     }
 }
