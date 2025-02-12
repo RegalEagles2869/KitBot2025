@@ -11,7 +11,7 @@ import frc.robot.subsystems.ClimberSubsystem;
 public class PositionSet extends Command {
   private ClimberSubsystem climber = ClimberSubsystem.getInstance();
   private double position;
-  /** Creates a new fjkalfdjklsafjkdsa. */
+  /** Creates a new . */
   public PositionSet(double position) {
     addRequirements(climber);
     this.position = position;

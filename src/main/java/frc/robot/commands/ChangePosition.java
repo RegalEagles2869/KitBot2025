@@ -25,15 +25,15 @@ public class ChangePosition extends Command {
 
   @Override
   public void execute() {
-    climber.setSpeed(position);
-    // climber.changePosition(position);
+    // climber.setSpeed(position);
+    climber.changePosition(position);
   }
   
   
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    climber.setSpeed(0);
+    // climber.setSpeed(0);
   }
 
   // Returns true when the command should end.

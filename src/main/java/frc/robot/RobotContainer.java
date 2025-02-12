@@ -51,7 +51,8 @@ public class RobotContainer {
   private void configureBindings() {
     driveSubsytem.setDefaultCommand(new DefaultDriveCommand());
     // Inputs.getGotoGoodPosition().onTrue(new SetPosition(Constants.ClimberConstants.goodPosition));
-    Inputs.getOuttake().onTrue(new PositionSet(Constants.ClimberConstants.goodPosition));
+    Inputs.getGoToGoodPos().onTrue(new PositionSet(Constants.ClimberConstants.goodPosition));
+    Inputs.getFloor().onTrue(new PositionSet(Constants.ClimberConstants.floorPosition));
     // Inputs.getGoToBasePosition().onTrue(new PositionSet(Constants.ClimberConstants.floorPosition));
     Inputs.getGoDown().whileTrue(new ChangePosition(1));
     Inputs.getGoUp().whileTrue(new ChangePosition(-1));

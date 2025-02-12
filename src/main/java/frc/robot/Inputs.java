@@ -25,8 +25,11 @@ public class Inputs {
         return driver1Com.x();
     }
 
-    public static Trigger getOuttake() {
+    public static Trigger getGoToGoodPos() {
         return driver1Com.a();
+    }
+    public static Trigger getFloor() {
+        return driver1Com.b();
     }
     public static Trigger getGoUp() {
         return driver1Com.y();

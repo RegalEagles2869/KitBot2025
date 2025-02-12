@@ -18,6 +18,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
+/**
+ * @author ServoHub
+ */
 public class ClimberSubsystem extends SubsystemBase {
 
   private SparkMax motor;
@@ -35,12 +38,13 @@ public class ClimberSubsystem extends SubsystemBase {
   public ClimberSubsystem() {
     motor = new SparkMax(Constants.MotorIDConstants.motorClimber, MotorType.kBrushless);
     motor.getEncoder().setPosition(0);
+    motor.getClosedLoopController().setReference(0, ControlType.kPosition);
     
-    // config = new SparkMaxConfig();
-    // config.inverted(false).idleMode(IdleMode.kBrake);
-    // config.encoder.positionConversionFactor(1000).velocityConversionFactor(1000);
-    // config.closedLoop.feedbackSensor(FeedbackSensor.kPrimaryEncoder).pid(1.0, 0.0, 0.0);
-    // motor.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    config = new SparkMaxConfig();
+    config.inverted(false).idleMode(IdleMode.kBrake);
+    config.encoder.positionConversionFactor(1).velocityConversionFactor(1);
+    config.closedLoop.feedbackSensor(FeedbackSensor.kPrimaryEncoder).pid(.5, 0.0, .5);
+    motor.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     // MotorConfiguration.configureMotor(motor, Constants.ClimberConstants.config);
   }
 
@@ -53,8 +57,9 @@ public class ClimberSubsystem extends SubsystemBase {
   }
 
   public void setSpeed(double speed) {
-    if ((speed > 0 && motor.getEncoder().getPosition() < Constants.ClimberConstants.maxPosition) || (speed < 0 && motor.getEncoder().getPosition() > 0))
+    if ((speed > 0 && motor.getEncoder().getPosition() > Constants.ClimberConstants.maxPosition) || speed <= 0)
       motor.set(speed);
+    position = -motor.getEncoder().getPosition();
   }
 
   public double getPosition() {
@@ -70,10 +75,7 @@ public class ClimberSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     SmartDashboard.putNumber("positionLol", getPosition());
-    SmartDashboard.putNumber("speedhAHA", motor.getEncoder().getVelocity());
-    SmartDashboard.putNumber("speedhAHA2", motor.getAppliedOutput());
-    if (position >= Constants.ClimberConstants.floorPosition && position < Constants.ClimberConstants.maxPosition) {
-      System.out.println(position);
+    if (position <= Constants.ClimberConstants.maxPosition) {
       motor.getClosedLoopController().setReference(position, ControlType.kPosition);
     }
   }
