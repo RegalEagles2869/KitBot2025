@@ -15,28 +15,28 @@ import frc.robot.Constants;
  * @author idk
  */
 public class OutakeSubsystem extends SubsystemBase {
-      private WPI_TalonSRX motor1;
+  private WPI_TalonSRX motor1;
+  private WPI_TalonSRX motor2;
 
 
-      private static OutakeSubsystem os;
+  private static OutakeSubsystem instance;
 
 
-    public static OutakeSubsystem getInstance() {
-        if (os == null) os = new OutakeSubsystem();
-        return os;
-    }
+  public static OutakeSubsystem getInstance() {
+    if (instance == null) instance = new OutakeSubsystem();
+    return instance;
+  }
 
   /** Creates a new OutakeSubsystem. */
   public OutakeSubsystem() {
-
     motor1 = new WPI_TalonSRX(Constants.MotorIDConstants.motorOutake);
-
-
+    motor2 = new WPI_TalonSRX(Constants.MotorIDConstants.motorOutake2);
   }
 
 
   public void motor1(double speed){
     motor1.set(speed);
+    motor2.set(-speed);
   }
   @Override
   public void periodic() {

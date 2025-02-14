@@ -36,6 +36,7 @@ public class PositionSet extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    if (climber.isAtPosition()) return true;
     return false;
   }
 }

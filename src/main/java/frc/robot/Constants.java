@@ -23,6 +23,7 @@ public final class Constants {
     public static final int motorBackRight = 4;
     public static final int motorOutake = 6;
     public static final int motorClimber = 5;
+    public static final int motorOutake2 = 0;
   }
 
   public static class ClimberConstants {

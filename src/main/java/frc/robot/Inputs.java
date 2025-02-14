@@ -26,6 +26,10 @@ public class Inputs {
     }
 
     public static Trigger getGoToClimberPosition() {
-        return driver1Com.x();
+        return driver1Com.b();
+    }
+
+    public static Trigger getGoToFloor() {
+        return driver1Com.a();
     }
 }

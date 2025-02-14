@@ -6,7 +6,7 @@ package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.DefaultDriveCommand;
-import frc.robot.commands.SetPosition;
+import frc.robot.commands.PositionSet;
 import frc.robot.commands.SpinOutake;
 import frc.robot.subsystems.DriveSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -44,9 +44,10 @@ public class RobotContainer {
    * joysticks}.
    */
   private void configureBindings() {
-    Inputs.getOutake().whileTrue(new SpinOutake(1));
     driveSubsytem.setDefaultCommand(new DefaultDriveCommand());
-    Inputs.getGotoGoodPosition().onTrue(new SetPosition(Constants.ClimberConstants.goodPosition));
+    Inputs.getGoToClimberPosition().onTrue(new PositionSet(Constants.ClimberConstants.goodPosition));
+    Inputs.getGoToFloor().onTrue(new PositionSet(Constants.ClimberConstants.floorPosition));
+    Inputs.getOutake().whileTrue(new SpinOutake(1));
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
 
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
