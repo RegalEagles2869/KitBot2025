@@ -33,11 +33,11 @@ public class OutakeSubsystem extends SubsystemBase {
     motor2 = new WPI_TalonSRX(Constants.MotorIDConstants.motorOutake2);
   }
 
-
   public void set(double speed) {
     motor1.set(speed);
     motor2.set(-speed);
   }
+  
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
