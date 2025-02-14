@@ -48,6 +48,7 @@ public class RobotContainer {
     Inputs.getGoToClimberPosition().onTrue(new PositionSet(Constants.ClimberConstants.goodPosition));
     Inputs.getGoToFloor().onTrue(new PositionSet(Constants.ClimberConstants.floorPosition));
     Inputs.getOutake().whileTrue(new SpinOutake(1));
+    Inputs.getIntake().whileTrue(new SpinOutake(-1));
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
 
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,

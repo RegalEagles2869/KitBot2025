@@ -27,13 +27,13 @@ public class SpinOutake extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    outake.motor1(speed);
+    outake.set(speed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-     outake.motor1(0);
+     outake.set(0);
   }
 
   // Returns true when the command should end.

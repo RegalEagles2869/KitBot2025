@@ -15,7 +15,9 @@ package frc.robot;
 public final class Constants {
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
+    public static final double slowSpeedMultiplier = .3;
   }
+  
   public static class MotorIDConstants {
     public static final int motorFrontLeft = 3;
     public static final int motorFrontRight = 1;

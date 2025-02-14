@@ -34,7 +34,7 @@ public class OutakeSubsystem extends SubsystemBase {
   }
 
 
-  public void motor1(double speed){
+  public void set(double speed) {
     motor1.set(speed);
     motor2.set(-speed);
   }

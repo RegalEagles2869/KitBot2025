@@ -16,6 +16,10 @@ public class Inputs {
         return speed;
     }
 
+    public static boolean getTriggers() {
+        return driver1.getLeftBumperButton() || driver1.getRightBumperButton();
+    }
+
     public static double getTurn() {
         double turn = driver1.getLeftY();
         return turn;
@@ -23,6 +27,10 @@ public class Inputs {
 
     public static Trigger getOutake() {
         return driver1Com.x();
+    }
+
+    public static Trigger getIntake() {
+        return driver1Com.y();
     }
 
     public static Trigger getGoToClimberPosition() {
