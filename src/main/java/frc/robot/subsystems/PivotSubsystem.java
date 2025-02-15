@@ -18,25 +18,22 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-/**
- * @author ServoHub
- */
-public class ClimberSubsystem extends SubsystemBase {
+public class PivotSubsystem extends SubsystemBase {
 
   private SparkMax motor;
   private double position;
   final DutyCycleOut request = new DutyCycleOut(0.0);
   private SparkMaxConfig config;
 
-  private static ClimberSubsystem instance;
+  private static PivotSubsystem instance;
 
-  public static ClimberSubsystem getInstance() {
-    if (instance == null) instance = new ClimberSubsystem();
+  public static PivotSubsystem getInstance() {
+    if (instance == null) instance = new PivotSubsystem();
     return instance;
   }
   /** Creates a new CoralPivotSubsystem. */
-  public ClimberSubsystem() {
-    motor = new SparkMax(Constants.MotorIDConstants.motorClimber, MotorType.kBrushless);
+  public PivotSubsystem() {
+    motor = new SparkMax(Constants.MotorIDConstants.motorPivot, MotorType.kBrushless);
     motor.getEncoder().setPosition(0);
     
     config = new SparkMaxConfig();
@@ -44,7 +41,6 @@ public class ClimberSubsystem extends SubsystemBase {
     config.encoder.positionConversionFactor(1).velocityConversionFactor(1);
     config.closedLoop.feedbackSensor(FeedbackSensor.kPrimaryEncoder).pid(.5, 0.0, .5);
     motor.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-    // MotorConfiguration.configureMotor(motor, Constants.ClimberConstants.config);
   }
 
   public void setPosition(double pos) {
@@ -56,7 +52,7 @@ public class ClimberSubsystem extends SubsystemBase {
   }
 
   public void setSpeed(double speed) {
-    if ((speed > 0 && motor.getEncoder().getPosition() > Constants.ClimberConstants.maxPosition) || speed <= 0)
+    if ((speed > 0 && motor.getEncoder().getPosition() > Constants.PivotConstants.maxPosition) || speed <= 0)
       motor.set(speed);
     position = -motor.getEncoder().getPosition();
   }
@@ -66,7 +62,7 @@ public class ClimberSubsystem extends SubsystemBase {
   }
 
   public boolean isAtPosition() {
-    if ((getPosition() >= (position - Constants.ClimberConstants.error)) && (getPosition() <= (position + Constants.ClimberConstants.error)))
+    if ((getPosition() >= (position - Constants.PivotConstants.error)) && (getPosition() <= (position + Constants.PivotConstants.error)))
       return true;
     return false;
   }
@@ -74,7 +70,7 @@ public class ClimberSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     SmartDashboard.putNumber("positionLol", getPosition());
-    if (position <= Constants.ClimberConstants.maxPosition) {
+    if (position <= Constants.PivotConstants.maxPosition && position >= Constants.PivotConstants.startingPosition) {
       motor.getClosedLoopController().setReference(position, ControlType.kPosition);
     }
   }

@@ -14,28 +14,25 @@ import frc.robot.Constants;
  * Outake Subsystem -- Controls Outake of KIT BOT and adds motor1 speed functionality
  * @author idk
  */
-public class OutakeSubsystem extends SubsystemBase {
-  private WPI_TalonSRX motor1;
-  private WPI_TalonSRX motor2;
+public class IntakeSubsystem extends SubsystemBase {
+  private WPI_TalonSRX motor;
 
 
-  private static OutakeSubsystem instance;
+  private static IntakeSubsystem instance;
 
 
-  public static OutakeSubsystem getInstance() {
-    if (instance == null) instance = new OutakeSubsystem();
+  public static IntakeSubsystem getInstance() {
+    if (instance == null) instance = new IntakeSubsystem();
     return instance;
   }
 
   /** Creates a new OutakeSubsystem. */
-  public OutakeSubsystem() {
-    motor1 = new WPI_TalonSRX(Constants.MotorIDConstants.motorOutake);
-    motor2 = new WPI_TalonSRX(Constants.MotorIDConstants.motorOutake2);
+  public IntakeSubsystem() {
+    motor = new WPI_TalonSRX(Constants.MotorIDConstants.motorIntake);
   }
 
   public void set(double speed) {
-    motor1.set(speed);
-    motor2.set(-speed);
+    motor.set(speed);
   }
   
   @Override

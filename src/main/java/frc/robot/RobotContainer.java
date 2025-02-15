@@ -3,10 +3,10 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot;
-
-import frc.robot.Constants.OperatorConstants;
+import frc.robot.commands.ChangePositionIntake;
 import frc.robot.commands.DefaultDriveCommand;
-import frc.robot.commands.PositionSet;
+import frc.robot.commands.PositionSetClimber;
+import frc.robot.commands.PositionSetIntake;
 import frc.robot.commands.SpinOutake;
 import frc.robot.subsystems.DriveSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -24,8 +24,6 @@ public class RobotContainer {
   private final DriveSubsystem driveSubsytem = new DriveSubsystem();
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
-  private final CommandXboxController m_driverController =
-      new CommandXboxController(OperatorConstants.kDriverControllerPort);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -45,10 +43,15 @@ public class RobotContainer {
    */
   private void configureBindings() {
     driveSubsytem.setDefaultCommand(new DefaultDriveCommand());
-    Inputs.getGoToClimberPosition().onTrue(new PositionSet(Constants.ClimberConstants.goodPosition));
-    Inputs.getGoToFloor().onTrue(new PositionSet(Constants.ClimberConstants.floorPosition));
+    Inputs.getGoToClimberPosition().onTrue(new PositionSetClimber(Constants.ClimberConstants.goodPosition));
+    Inputs.getGoToFloor().onTrue(new PositionSetClimber(Constants.ClimberConstants.floorPosition));
     Inputs.getOutake().whileTrue(new SpinOutake(1));
     Inputs.getIntake().whileTrue(new SpinOutake(-1));
+    Inputs.getGoToFloorP().onTrue(new PositionSetIntake(Constants.PivotConstants.startingPosition));
+    Inputs.getGoToPivotPosition().onTrue(new PositionSetIntake(Constants.PivotConstants.ballsPosition));
+
+    Inputs.getChangeLeft().onTrue(new ChangePositionIntake(Constants.PivotConstants.positionChange));
+    Inputs.getChangeRight().onTrue(new ChangePositionIntake(-Constants.PivotConstants.positionChange));
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
 
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,

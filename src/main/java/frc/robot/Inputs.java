@@ -26,11 +26,11 @@ public class Inputs {
     }
 
     public static Trigger getOutake() {
-        return driver1Com.x();
+        return driver1Com.leftBumper();
     }
 
     public static Trigger getIntake() {
-        return driver1Com.y();
+        return driver1Com.rightBumper();
     }
 
     public static Trigger getGoToClimberPosition() {
@@ -39,5 +39,21 @@ public class Inputs {
 
     public static Trigger getGoToFloor() {
         return driver1Com.a();
+    }
+
+    public static Trigger getGoToFloorP() {
+        return driver1Com.povUp();
+    }
+
+    public static Trigger getGoToPivotPosition() {
+        return driver1Com.povDown();
+    }
+
+    public static Trigger getChangeLeft() {
+        return driver1Com.povLeft();
+    }
+
+    public static Trigger getChangeRight() {
+        return driver1Com.povRight();
     }
 }

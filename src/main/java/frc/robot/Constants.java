@@ -23,16 +23,29 @@ public final class Constants {
     public static final int motorFrontRight = 1;
     public static final int motorBackLeft = 2;
     public static final int motorBackRight = 4;
-    public static final int motorOutake = 6;
+    public static final int motorIntake = 6;
     public static final int motorClimber = 5;
     public static final int motorOutake2 = 0;
+    public static final int motorPivot = 0;
   }
 
   public static class ClimberConstants {
     public static final double floorPosition = 0;
-    public static final double maxPosition = 0;
-    public static final double goodPosition = 0;
+    public static final double maxPosition = 200;
+    public static final double goodPosition = 195;
     public static final double error = 1;
+    public static final double positionChange = .1;
+    
+    public static final MotorConfiguration config = new MotorConfiguration(1, -1, 40, true, false);
+  }
+
+  public static class PivotConstants {
+    public static final double startingPosition = 0;
+    public static final double ballsPosition = 10;
+    public static final double maxPosition = 100000;
+    public static final double error = 1;
+    public static final double positionChange = .1;
+
     public static final MotorConfiguration config = new MotorConfiguration(1, -1, 40, true, false);
   }
 
