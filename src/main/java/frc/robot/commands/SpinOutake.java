@@ -5,17 +5,17 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.OutakeSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
 public class SpinOutake extends Command {
-  private OutakeSubsystem outake;
+  private IntakeSubsystem outake;
   private double speed;
 
 
   /** Creates a new spinOutake. */
   public SpinOutake(double speed) {
-    outake = OutakeSubsystem.getInstance();
+    outake = IntakeSubsystem.getInstance();
     this.speed=speed;
     // Use addRequirements() here to declare subsystem dependencies.
   }

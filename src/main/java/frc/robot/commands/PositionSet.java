@@ -8,11 +8,11 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.ClimberSubsystem;;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
-public class PositionSet extends Command {
+public class PositionSetClimber extends Command {
   private ClimberSubsystem climber = ClimberSubsystem.getInstance();
   private double position;
   /** Creates a new . */
-  public PositionSet(double position) {
+  public PositionSetClimber(double position) {
     addRequirements(climber);
     this.position = position;
     // Use addRequirements() here to declare subsystem dependencies.

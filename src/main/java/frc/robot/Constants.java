@@ -40,9 +40,9 @@ public final class Constants {
   }
 
   public static class PivotConstants {
-    public static final double startingPosition = 0;
-    public static final double ballsPosition = 10;
-    public static final double maxPosition = 100000;
+    public static final double floorPosition = 0;
+    public static final double maxPosition = 200;
+    public static final double goodPosition = 200;
     public static final double error = 1;
     public static final double positionChange = .1;
 
