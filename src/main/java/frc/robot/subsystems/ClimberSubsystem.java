@@ -25,7 +25,6 @@ public class ClimberSubsystem extends SubsystemBase {
 
   private SparkMax motor;
   private double position;
-  final DutyCycleOut request = new DutyCycleOut(0.0);
   private SparkMaxConfig config;
 
   private static ClimberSubsystem instance;
