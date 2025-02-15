@@ -4,7 +4,6 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix6.controls.DutyCycleOut;
 import com.revrobotics.spark.SparkBase.ControlType;
 import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.SparkBase.ResetMode;
@@ -22,7 +21,6 @@ public class PivotSubsystem extends SubsystemBase {
 
   private SparkMax motor;
   private double position;
-  final DutyCycleOut request = new DutyCycleOut(0.0);
   private SparkMaxConfig config;
 
   private static PivotSubsystem instance;
