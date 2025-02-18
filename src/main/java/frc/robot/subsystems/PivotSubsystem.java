@@ -69,6 +69,7 @@ public class PivotSubsystem extends SubsystemBase {
   public void periodic() {
     SmartDashboard.putNumber("positionLol", getPosition());
     if (position <= Constants.PivotConstants.maxPosition && position >= Constants.PivotConstants.startingPosition) {
+      System.out.println(position);
       motor.getClosedLoopController().setReference(position, ControlType.kPosition);
     }
   }

@@ -53,6 +53,8 @@ public class Inputs {
         return driver1Com.povLeft();
     }
 
+    
+
     public static Trigger getChangeRight() {
         return driver1Com.povRight();
     }

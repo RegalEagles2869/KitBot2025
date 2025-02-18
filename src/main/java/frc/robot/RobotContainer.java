@@ -9,7 +9,10 @@ import frc.robot.commands.DefaultDriveCommand;
 import frc.robot.commands.PositionSetClimber;
 import frc.robot.commands.PositionSetIntake;
 import frc.robot.commands.SpinOutake;
+import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.PivotSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
@@ -24,13 +27,15 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private DriveSubsystem driveSubsytem;
+  private final DriveSubsystem driveSubsytem = DriveSubsystem.getInstance();
+  private final ClimberSubsystem climber = ClimberSubsystem.getInstance();
+  private final IntakeSubsystem intake = IntakeSubsystem.getInstance();
+  private final PivotSubsystem pivot = PivotSubsystem.getInstance();
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    driveSubsytem = DriveSubsystem.getInstance();
     // Configure the trigger bindings
     configureBindings();
 
@@ -49,8 +54,8 @@ public class RobotContainer {
     driveSubsytem.setDefaultCommand(new DefaultDriveCommand());
     Inputs.getGoToClimberPosition().onTrue(new PositionSetClimber(Constants.ClimberConstants.goodPosition));
     Inputs.getGoToFloor().onTrue(new PositionSetClimber(Constants.ClimberConstants.floorPosition));
-    Inputs.getOutake().whileTrue(new SpinOutake(1));
-    Inputs.getIntake().whileTrue(new SpinOutake(-1));
+    Inputs.getOutake().whileTrue(new SpinOutake(.5));
+    Inputs.getIntake().whileTrue(new SpinOutake(-.5));
     Inputs.getGoToFloorP().onTrue(new PositionSetIntake(Constants.PivotConstants.startingPosition));
     Inputs.getGoToPivotPosition().onTrue(new PositionSetIntake(Constants.PivotConstants.ballsPosition));
 
