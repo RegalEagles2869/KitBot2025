@@ -4,10 +4,9 @@
 
 package frc.robot;
 import frc.robot.commands.AutoCommand;
-import frc.robot.commands.ChangePositionIntake;
 import frc.robot.commands.DefaultDriveCommand;
 import frc.robot.commands.PositionSetClimber;
-import frc.robot.commands.PositionSetIntake;
+import frc.robot.commands.SetPivotSpeed;
 import frc.robot.commands.SpinOutake;
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
@@ -56,11 +55,9 @@ public class RobotContainer {
     Inputs.getGoToFloor().onTrue(new PositionSetClimber(Constants.ClimberConstants.floorPosition));
     Inputs.getOutake().whileTrue(new SpinOutake(.5));
     Inputs.getIntake().whileTrue(new SpinOutake(-.5));
-    Inputs.getGoToFloorP().onTrue(new PositionSetIntake(Constants.PivotConstants.startingPosition));
-    Inputs.getGoToPivotPosition().onTrue(new PositionSetIntake(Constants.PivotConstants.ballsPosition));
 
-    Inputs.getChangeLeft().onTrue(new ChangePositionIntake(Constants.PivotConstants.positionChange));
-    Inputs.getChangeRight().onTrue(new ChangePositionIntake(-Constants.PivotConstants.positionChange));
+    Inputs.getChangeLeft().onTrue(new SetPivotSpeed(.1));
+    Inputs.getChangeLeft().onTrue(new SetPivotSpeed(-.1));
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
 
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,

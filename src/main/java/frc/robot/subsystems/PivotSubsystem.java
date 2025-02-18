@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.revrobotics.spark.SparkBase.ControlType;
 import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.SparkBase.ResetMode;
@@ -19,9 +20,7 @@ import frc.robot.Constants;
 
 public class PivotSubsystem extends SubsystemBase {
 
-  private SparkMax motor;
-  private double position;
-  private SparkMaxConfig config;
+  private WPI_TalonSRX motor;
 
   private static PivotSubsystem instance;
 
@@ -31,46 +30,10 @@ public class PivotSubsystem extends SubsystemBase {
   }
   /** Creates a new CoralPivotSubsystem. */
   public PivotSubsystem() {
-    motor = new SparkMax(Constants.MotorIDConstants.motorPivot, MotorType.kBrushless);
-    motor.getEncoder().setPosition(0);
-    
-    config = new SparkMaxConfig();
-    config.inverted(false).idleMode(IdleMode.kBrake);
-    config.encoder.positionConversionFactor(1).velocityConversionFactor(1);
-    config.closedLoop.feedbackSensor(FeedbackSensor.kPrimaryEncoder).pid(.5, 0.0, .5);
-    motor.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    motor = new WPI_TalonSRX(Constants.MotorIDConstants.motorIntake);
   }
 
-  public void setPosition(double pos) {
-    position = pos;
-  }
-
-  public void changePosition(double changePos) {
-    position += changePos;
-  }
-
-  public void setSpeed(double speed) {
-    if ((speed > 0 && motor.getEncoder().getPosition() > Constants.PivotConstants.maxPosition) || speed <= 0)
-      motor.set(speed);
-    position = -motor.getEncoder().getPosition();
-  }
-
-  public double getPosition() {
-    return motor.getEncoder().getPosition();
-  }
-
-  public boolean isAtPosition() {
-    if ((getPosition() >= (position - Constants.PivotConstants.error)) && (getPosition() <= (position + Constants.PivotConstants.error)))
-      return true;
-    return false;
-  }
-
-  @Override
-  public void periodic() {
-    SmartDashboard.putNumber("positionLol", getPosition());
-    if (position <= Constants.PivotConstants.maxPosition && position >= Constants.PivotConstants.startingPosition) {
-      System.out.println(position);
-      motor.getClosedLoopController().setReference(position, ControlType.kPosition);
-    }
+  public void set(double speed) {
+    motor.set(speed);
   }
 }
