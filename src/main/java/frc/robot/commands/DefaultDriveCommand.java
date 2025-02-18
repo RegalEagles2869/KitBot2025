@@ -11,7 +11,7 @@ import frc.robot.subsystems.DriveSubsystem;
 
 public class DefaultDriveCommand extends Command {
   /** Creates a new DefaultDriveCommand. */
-  DriveSubsystem drive = DriveSubsystem.getInstance();
+  private DriveSubsystem drive = DriveSubsystem.getInstance();
   public DefaultDriveCommand() {
     addRequirements(drive);
     // Use addRequirements() here to declare subsystem dependencies.

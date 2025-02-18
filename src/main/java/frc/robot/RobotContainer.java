@@ -24,12 +24,13 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final DriveSubsystem driveSubsytem = new DriveSubsystem();
+  private DriveSubsystem driveSubsytem;
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+    driveSubsytem = DriveSubsystem.getInstance();
     // Configure the trigger bindings
     configureBindings();
 

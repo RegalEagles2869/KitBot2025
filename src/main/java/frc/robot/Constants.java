@@ -23,10 +23,9 @@ public final class Constants {
     public static final int motorFrontRight = 1;
     public static final int motorBackLeft = 2;
     public static final int motorBackRight = 4;
-    public static final int motorIntake = 6;
     public static final int motorClimber = 5;
-    public static final int motorOutake2 = 0;
-    public static final int motorPivot = 0;
+    public static final int motorIntake = 6;
+    public static final int motorPivot = 7;
   }
 
   public static class ClimberConstants {
