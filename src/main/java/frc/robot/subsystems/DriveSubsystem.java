@@ -1,7 +1,5 @@
 package frc.robot.subsystems;
 
-
-import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -21,10 +19,6 @@ public class DriveSubsystem extends SubsystemBase{
     private static DriveSubsystem ds;
     //talon.setNeutralMode(NeutralMode.)
     public DriveSubsystem() {
-        leftMotor1.setNeutralMode(NeutralMode.Coast);
-        leftMotor2.setNeutralMode(NeutralMode.Coast);
-        rightMotor1.setNeutralMode(NeutralMode.Coast);
-        rightMotor2.setNeutralMode(NeutralMode.Coast);
         leftMotor1 = new WPI_TalonSRX(Constants.MotorIDConstants.motorFrontLeft);
         leftMotor2 = new WPI_TalonSRX(Constants.MotorIDConstants.motorBackLeft);
         rightMotor1 = new WPI_TalonSRX(Constants.MotorIDConstants.motorFrontRight);
@@ -32,6 +26,7 @@ public class DriveSubsystem extends SubsystemBase{
         leftMotor2.follow(leftMotor1);
         rightMotor2.follow(rightMotor1);
         // leftMotor2.setInverted(true);
+        rightMotor1.setInverted(true);
         // rightMotor2.setInverted(true);
         // drive = new DifferentialDrive(leftMotor1, rightMotor1);
         drive = new DifferentialDrive(leftMotor1, rightMotor1);
@@ -48,7 +43,7 @@ public class DriveSubsystem extends SubsystemBase{
 
     @Override
     public void periodic() {
-        SmartDashboard.putNumber("left", leftMotor1.getSupplyCurrent());
+        SmartDashboard.putNumber("left1", leftMotor1.getSupplyCurrent());
         SmartDashboard.putNumber("left2", leftMotor2.getSupplyCurrent());
         SmartDashboard.putNumber("right1", rightMotor1.getSupplyCurrent());
         SmartDashboard.putNumber("right2", rightMotor2.getSupplyCurrent());
