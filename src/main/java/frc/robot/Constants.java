@@ -16,13 +16,14 @@ public final class Constants {
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
     public static final double slowSpeedMultiplier = .3;
+    public static final int kOperatorControllerPort = 1;
   }
   
   public static class MotorIDConstants {
     public static final int motorFrontLeft = 3;
     public static final int motorFrontRight = 1;
-    public static final int motorBackLeft = 2;
-    public static final int motorBackRight = 4;
+    public static final int motorBackLeft = 4;
+    public static final int motorBackRight = 2;
     public static final int motorClimber = 5;
     public static final int motorIntake = 6;
     public static final int motorPivot = 7;

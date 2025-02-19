@@ -56,8 +56,8 @@ public class RobotContainer {
     Inputs.getOutake().whileTrue(new SpinOutake(.5));
     Inputs.getIntake().whileTrue(new SpinOutake(-.5));
 
-    Inputs.getChangeLeft().onTrue(new SetPivotSpeed(.1));
-    Inputs.getChangeLeft().onTrue(new SetPivotSpeed(-.1));
+    Inputs.getChangeLeft().whileTrue(new SetPivotSpeed(.3));
+    Inputs.getChangeRight().whileTrue(new SetPivotSpeed(-.3));
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
 
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,

@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.revrobotics.spark.SparkBase.ControlType;
 import com.revrobotics.spark.SparkBase.PersistMode;
@@ -30,7 +31,8 @@ public class PivotSubsystem extends SubsystemBase {
   }
   /** Creates a new CoralPivotSubsystem. */
   public PivotSubsystem() {
-    motor = new WPI_TalonSRX(Constants.MotorIDConstants.motorIntake);
+    motor = new WPI_TalonSRX(Constants.MotorIDConstants.motorPivot);
+    motor.setNeutralMode(NeutralMode.Brake);
   }
 
   public void set(double speed) {
