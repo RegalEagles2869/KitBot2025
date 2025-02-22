@@ -35,7 +35,8 @@ public class ClimberSubsystem extends SubsystemBase {
   /** Creates a new CoralPivotSubsystem. */
   public ClimberSubsystem() {
     motor = new SparkMax(Constants.MotorIDConstants.motorClimber, MotorType.kBrushless);
-    motor.getEncoder().setPosition(0);
+    motor.getEncoder().setPosition(Constants.ClimberConstants.floorPosition);
+    position = Constants.ClimberConstants.floorPosition;
     
     config = new SparkMaxConfig();
     config.inverted(false).idleMode(IdleMode.kBrake);

@@ -7,6 +7,7 @@ import frc.robot.commands.AutoCommand;
 import frc.robot.commands.DefaultDriveCommand;
 import frc.robot.commands.PositionSetClimber;
 import frc.robot.commands.SetPivotSpeed;
+import frc.robot.commands.SetPositionPivot;
 import frc.robot.commands.SpinOutake;
 import frc.robot.commands.ChangePositionClimber;
 import frc.robot.subsystems.ClimberSubsystem;
@@ -59,6 +60,7 @@ public class RobotContainer {
 
     Inputs.getChangeLeft().whileTrue(new SetPivotSpeed(.3));
     Inputs.getChangeRight().whileTrue(new SetPivotSpeed(-.3));
+    Inputs.getGoToFloorPivot().onTrue(new SetPositionPivot(0));
 
     Inputs.getClimberUp().whileTrue(new ChangePositionClimber(.5));
     Inputs.getClimberDown().whileTrue(new ChangePositionClimber(-.5));

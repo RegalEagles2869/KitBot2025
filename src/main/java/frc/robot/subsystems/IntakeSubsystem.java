@@ -33,7 +33,6 @@ public class IntakeSubsystem extends SubsystemBase {
   }
 
   public void set(double speed) {
-    System.out.println(speed);
     motor.set(speed);
   }
   

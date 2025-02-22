@@ -54,11 +54,11 @@ public class PivotSubsystem extends SubsystemBase {
   }
 
   public void setSpeed(double speed) {
-    if (speed == 0) {
+    /*if (speed == 0) {
       posControl = true;
       position = motor.getEncoder().getPosition();
-    }
-    else posControl = false;
+    }*/
+    // else posControl = false;
     motor.set(speed);
   }
 
@@ -75,7 +75,7 @@ public class PivotSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     if (posControl) {
-      if (position >= Constants.PivotConstants.floorPosition && position < Constants.PivotConstants.maxPosition) {
+      if (position >= Constants.PivotConstants.minPosition && position < Constants.PivotConstants.maxPosition) {
         motor.getClosedLoopController().setReference(position, ControlType.kPosition);
       }
     }

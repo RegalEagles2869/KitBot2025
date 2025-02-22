@@ -31,6 +31,10 @@ public class Inputs {
         return driver1Com.leftBumper();
     }
 
+    public static Trigger getGoToFloor() {
+        return driver1Com.a();
+    }
+
     public static Trigger getIntake() {
         return driver1Com.rightBumper();
     }
@@ -39,8 +43,8 @@ public class Inputs {
         return driver1Com.b();
     }
 
-    public static Trigger getGoToFloor() {
-        return driver1Com.a();
+    public static Trigger getGoToFloorPivot() {
+        return driver1Com.x();
     }
 
     public static Trigger getClimberDown() {
