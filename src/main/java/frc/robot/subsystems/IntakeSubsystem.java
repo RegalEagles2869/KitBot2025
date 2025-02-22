@@ -6,6 +6,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -32,6 +33,7 @@ public class IntakeSubsystem extends SubsystemBase {
   }
 
   public void set(double speed) {
+    System.out.println(speed);
     motor.set(speed);
   }
   

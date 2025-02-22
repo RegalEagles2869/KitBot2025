@@ -26,7 +26,8 @@ public class DriveSubsystem extends SubsystemBase{
         leftMotor2.follow(leftMotor1);
         rightMotor2.follow(rightMotor1);
         // leftMotor2.setInverted(true);
-        rightMotor1.setInverted(true);
+        // rightMotor1.setInverted(true);
+        // rightMotor2.setInverted(true);
         // rightMotor2.setInverted(true);
         // drive = new DifferentialDrive(leftMotor1, rightMotor1);
         drive = new DifferentialDrive(leftMotor1, rightMotor1);

@@ -43,11 +43,11 @@ public class Inputs {
         return driver1Com.a();
     }
 
-    public static Trigger getGoToFloorP() {
+    public static Trigger getClimberDown() {
         return driver1Com.povUp();
     }
 
-    public static Trigger getGoToPivotPosition() {
+    public static Trigger getClimberUp() {
         return driver1Com.povDown();
     }
 

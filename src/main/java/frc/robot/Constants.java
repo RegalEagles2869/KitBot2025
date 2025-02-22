@@ -16,7 +16,7 @@ public final class Constants {
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
     public static final double slowSpeedMultiplier = .3;
-    public static final int kOperatorControllerPort = 1;
+    public static final int kOperatorControllerPort = 0;
   }
   
   public static class MotorIDConstants {
@@ -31,8 +31,8 @@ public final class Constants {
 
   public static class ClimberConstants {
     public static final double floorPosition = 0;
-    public static final double maxPosition = 200;
-    public static final double goodPosition = 200;
+    public static final double maxPosition = 100000;
+    public static final double goodPosition = 330;
     public static final double error = 1;
     public static final double positionChange = .1;
     

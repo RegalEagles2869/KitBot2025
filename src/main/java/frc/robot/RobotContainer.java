@@ -8,6 +8,7 @@ import frc.robot.commands.DefaultDriveCommand;
 import frc.robot.commands.PositionSetClimber;
 import frc.robot.commands.SetPivotSpeed;
 import frc.robot.commands.SpinOutake;
+import frc.robot.commands.ChangePositionClimber;
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -58,6 +59,9 @@ public class RobotContainer {
 
     Inputs.getChangeLeft().whileTrue(new SetPivotSpeed(.3));
     Inputs.getChangeRight().whileTrue(new SetPivotSpeed(-.3));
+
+    Inputs.getClimberUp().whileTrue(new ChangePositionClimber(.5));
+    Inputs.getClimberDown().whileTrue(new ChangePositionClimber(-.5));
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
 
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
