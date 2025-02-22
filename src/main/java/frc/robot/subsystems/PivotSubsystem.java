@@ -4,24 +4,25 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.revrobotics.spark.SparkBase.ControlType;
 import com.revrobotics.spark.SparkBase.PersistMode;
-import com.revrobotics.spark.SparkBase.ResetMode;
-import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.config.ClosedLoopConfig.FeedbackSensor;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
+import com.revrobotics.spark.SparkBase.ResetMode;
+import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.config.SparkMaxConfig;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
+
 public class PivotSubsystem extends SubsystemBase {
 
-  private WPI_TalonSRX motor;
+  private SparkMax motor;
+  private double position;
+  private SparkMaxConfig config;
 
   private static PivotSubsystem instance;
 
@@ -31,11 +32,46 @@ public class PivotSubsystem extends SubsystemBase {
   }
   /** Creates a new CoralPivotSubsystem. */
   public PivotSubsystem() {
-    motor = new WPI_TalonSRX(Constants.MotorIDConstants.motorPivot);
-    motor.setNeutralMode(NeutralMode.Brake);
+    motor = new SparkMax(Constants.MotorIDConstants.motorPivot, MotorType.kBrushless);
+    motor.getEncoder().setPosition(0);
+    
+    config = new SparkMaxConfig();
+    config.inverted(false).idleMode(IdleMode.kBrake);
+    config.encoder.positionConversionFactor(1).velocityConversionFactor(1);
+    config.closedLoop.feedbackSensor(FeedbackSensor.kPrimaryEncoder).pid(.5, 0.0, .5);
+    motor.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
   }
 
-  public void set(double speed) {
-    motor.set(speed);
+  public void setPosition(double pos) {
+    position = pos;
+  }
+
+  public void changePosition(double changePos) {
+    position += changePos;
+  }
+
+  public void setSpeed(double speed) {
+    if ((speed > 0 && motor.getEncoder().getPosition() > Constants.PivotConstants.maxPosition) || speed <= 0)
+      motor.set(speed);
+    position = -motor.getEncoder().getPosition();
+  }
+
+  public double getPosition() {
+    return motor.getEncoder().getPosition();
+  }
+
+  public boolean isAtPosition() {
+    if ((getPosition() >= (position - Constants.PivotConstants.error)) && (getPosition() <= (position + Constants.PivotConstants.error)))
+      return true;
+    return false;
+  }
+
+  @Override
+  public void periodic() {
+    SmartDashboard.putNumber("positionLol2", getPosition());
+    if (position <= Constants.PivotConstants.maxPosition && position >= Constants.PivotConstants.startingPosition) {
+      System.out.println(position);
+      motor.getClosedLoopController().setReference(position, ControlType.kPosition);
+    }
   }
 }
