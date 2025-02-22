@@ -16,7 +16,7 @@ public final class Constants {
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
     public static final double slowSpeedMultiplier = .3;
-    public static final int kOperatorControllerPort = 0;
+    public static final int kOperatorControllerPort = 1;
   }
   
   public static class MotorIDConstants {
@@ -40,7 +40,7 @@ public final class Constants {
   }
 
   public static class PivotConstants {
-    public static final double startingPosition = 0;
+    public static final double floorPosition = 0;
     public static final double maxPosition = 100000;
     public static final double ballsPosition = 50;
     public static final double error = 1;
