@@ -31,7 +31,7 @@ public class Inputs {
         return driver1Com.leftBumper();
     }
 
-    public static Trigger getGoToFloor() {
+    public static Trigger getClimbOrigin() {
         return driver1Com.a();
     }
 
@@ -44,7 +44,11 @@ public class Inputs {
     }
 
     public static Trigger getGoToFloorPivot() {
-        return driver1Com.x();
+        return driver1Com.y();
+    }
+
+    public static Trigger getRUMBLE() {
+        return driver1Com.back();
     }
 
     public static Trigger getClimberDown() {
@@ -59,11 +63,15 @@ public class Inputs {
         return driver1Com.povLeft();
     }
 
+    public static Trigger getBallsMidPosition() {
+        return driver1Com.start();
+    }
+
     public static Trigger getChangeRight() {
         return driver1Com.povRight();
     }
 
-    public static Trigger getRUMBLE() {
+    public static Trigger getGoToBallsPosition() {
         return driver1Com.x();
     }
 

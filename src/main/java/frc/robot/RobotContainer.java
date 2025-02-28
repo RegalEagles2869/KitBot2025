@@ -54,13 +54,15 @@ public class RobotContainer {
   private void configureBindings() {
     driveSubsytem.setDefaultCommand(new DefaultDriveCommand());
     Inputs.getGoToClimberPosition().onTrue(new PositionSetClimber(Constants.ClimberConstants.goodPosition));
-    Inputs.getGoToFloor().onTrue(new PositionSetClimber(Constants.ClimberConstants.floorPosition));
-    Inputs.getOutake().whileTrue(new SpinOutake(.5));
-    Inputs.getIntake().whileTrue(new SpinOutake(-.5));
+    Inputs.getClimbOrigin().onTrue(new PositionSetClimber(Constants.ClimberConstants.floorPosition));
+    Inputs.getOutake().whileTrue(new SpinOutake(.2));
+    Inputs.getIntake().whileTrue(new SpinOutake(-1));
 
-    Inputs.getChangeLeft().whileTrue(new SetPivotSpeed(.3));
-    Inputs.getChangeRight().whileTrue(new SetPivotSpeed(-.3));
-    Inputs.getGoToFloorPivot().onTrue(new SetPositionPivot(0));
+    Inputs.getChangeLeft().whileTrue(new SetPivotSpeed(.15));
+    Inputs.getChangeRight().whileTrue(new SetPivotSpeed(-.05));
+    Inputs.getGoToFloorPivot().onTrue(new SetPositionPivot(Constants.PivotConstants.floorPosition));
+    Inputs.getGoToBallsPosition().onTrue(new SetPositionPivot(Constants.PivotConstants.ballsPosition));
+    Inputs.getBallsMidPosition().onTrue(new SetPositionPivot(Constants.PivotConstants.ballsGrabbedPosition));
 
     Inputs.getClimberUp().whileTrue(new ChangePositionClimber(.5));
     Inputs.getClimberDown().whileTrue(new ChangePositionClimber(-.5));

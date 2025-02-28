@@ -13,6 +13,7 @@ import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -35,11 +36,12 @@ public class PivotSubsystem extends SubsystemBase {
   public PivotSubsystem() {
     motor = new SparkMax(Constants.MotorIDConstants.motorPivot, MotorType.kBrushless);
     posControl = false;
+    motor.getEncoder().setPosition(0);
 
     config = new SparkMaxConfig();
     config.inverted(false).idleMode(IdleMode.kBrake);
     config.encoder.positionConversionFactor(1).velocityConversionFactor(1);
-    config.closedLoop.feedbackSensor(FeedbackSensor.kPrimaryEncoder).pid(.1, 0.0, 0.0);
+    config.closedLoop.feedbackSensor(FeedbackSensor.kPrimaryEncoder).pid(.05, 0.0, 0.0);
     motor.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
   }
 
@@ -54,11 +56,11 @@ public class PivotSubsystem extends SubsystemBase {
   }
 
   public void setSpeed(double speed) {
-    /*if (speed == 0) {
+    if (speed == 0) {
       posControl = true;
       position = motor.getEncoder().getPosition();
-    }*/
-    // else posControl = false;
+    }
+    else posControl = false;
     motor.set(speed);
   }
 
@@ -74,6 +76,7 @@ public class PivotSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
+    SmartDashboard.putNumber("positionHAHAH pivt", getPosition());
     if (posControl) {
       if (position >= Constants.PivotConstants.minPosition && position < Constants.PivotConstants.maxPosition) {
         motor.getClosedLoopController().setReference(position, ControlType.kPosition);

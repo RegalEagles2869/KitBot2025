@@ -37,6 +37,7 @@ public class ClimberSubsystem extends SubsystemBase {
     motor = new SparkMax(Constants.MotorIDConstants.motorClimber, MotorType.kBrushless);
     motor.getEncoder().setPosition(Constants.ClimberConstants.floorPosition);
     position = Constants.ClimberConstants.floorPosition;
+    motor.getEncoder().setPosition(Constants.ClimberConstants.floorPosition);
     
     config = new SparkMaxConfig();
     config.inverted(false).idleMode(IdleMode.kBrake);
