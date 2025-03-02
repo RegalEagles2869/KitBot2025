@@ -41,7 +41,7 @@ public class PivotSubsystem extends SubsystemBase {
     config = new SparkMaxConfig();
     config.inverted(false).idleMode(IdleMode.kBrake);
     config.encoder.positionConversionFactor(1).velocityConversionFactor(1);
-    config.closedLoop.feedbackSensor(FeedbackSensor.kPrimaryEncoder).pid(.05, 0.0, 0.0);
+    config.closedLoop.feedbackSensor(FeedbackSensor.kPrimaryEncoder).pid(.1, 0.0, 0.0);
     motor.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
   }
 

@@ -5,31 +5,29 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.Constants;
 import frc.robot.Inputs;
-import frc.robot.subsystems.DriveSubsystem;
 
-public class DefaultDriveCommand extends Command {
-  /** Creates a new DefaultDriveCommand. */
-  private DriveSubsystem drive = DriveSubsystem.getInstance();
-  public DefaultDriveCommand() {
-    addRequirements(drive);
+public class RumbleRumble2 extends Command {
+  /** Creates a new RumbleRumble. */
+  public RumbleRumble2() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    Inputs.RUMBLERUMBLE2(1);
+  }
+
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {
-    if (Inputs.getAButtonDrive()) drive.drive(Inputs.getSpeed() * Constants.OperatorConstants.slowSpeedMultiplier, Inputs.getTurn() * Constants.OperatorConstants.slowSpeedMultiplier);
-    else drive.drive(Inputs.getSpeed(),Inputs.getTurn());
-  }
+  public void execute() {}
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    Inputs.RUMBLERUMBLE2(0);
+  }
 
   // Returns true when the command should end.
   @Override

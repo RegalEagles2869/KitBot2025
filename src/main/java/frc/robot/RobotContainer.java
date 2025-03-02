@@ -55,11 +55,11 @@ public class RobotContainer {
     driveSubsytem.setDefaultCommand(new DefaultDriveCommand());
     Inputs.getGoToClimberPosition().onTrue(new PositionSetClimber(Constants.ClimberConstants.goodPosition));
     Inputs.getClimbOrigin().onTrue(new PositionSetClimber(Constants.ClimberConstants.floorPosition));
-    Inputs.getOutake().whileTrue(new SpinOutake(.2));
+    Inputs.getOutake().whileTrue(new SpinOutake(.5));
     Inputs.getIntake().whileTrue(new SpinOutake(-1));
 
     Inputs.getChangeLeft().whileTrue(new SetPivotSpeed(.15));
-    Inputs.getChangeRight().whileTrue(new SetPivotSpeed(-.05));
+    Inputs.getChangeRight().whileTrue(new SetPivotSpeed(-.1));
     Inputs.getGoToFloorPivot().onTrue(new SetPositionPivot(Constants.PivotConstants.floorPosition));
     Inputs.getGoToBallsPosition().onTrue(new SetPositionPivot(Constants.PivotConstants.ballsPosition));
     Inputs.getBallsMidPosition().onTrue(new SetPositionPivot(Constants.PivotConstants.ballsGrabbedPosition));

@@ -8,9 +8,9 @@ import frc.robot.Constants.OperatorConstants;
 
 public class Inputs {
 
-    private static final XboxController controllerLol = new XboxController(Constants.OperatorConstants.kDriverControllerPort);
     private static final XboxController driver1 = new XboxController(OperatorConstants.kDriverControllerPort);
 	private static final CommandXboxController driver1Com = new CommandXboxController(OperatorConstants.kOperatorControllerPort);
+	private static final CommandXboxController driverCom = new CommandXboxController(OperatorConstants.kDriverControllerPort);
     
     
 	public static double getSpeed() {
@@ -18,8 +18,12 @@ public class Inputs {
         return speed;
     }
 
-    public static boolean getTriggers() {
+    public static boolean getAButtonDrive() {
         return driver1.getAButton();
+    }
+
+    public static Trigger getRUMBLERUMBLE2() {
+        return driverCom.b();
     }
 
     public static double getTurn() {
@@ -48,7 +52,7 @@ public class Inputs {
     }
 
     public static Trigger getRUMBLE() {
-        return driver1Com.back();
+        return driver1Com.button(7);
     }
 
     public static Trigger getClimberDown() {
@@ -64,7 +68,7 @@ public class Inputs {
     }
 
     public static Trigger getBallsMidPosition() {
-        return driver1Com.start();
+        return driver1Com.button(8);
     }
 
     public static Trigger getChangeRight() {
@@ -77,7 +81,13 @@ public class Inputs {
 
     public static void RUMBLERUMBLE(double rumble) {
         try {
-            controllerLol.setRumble(RumbleType.kBothRumble, rumble);
+            driver1.setRumble(RumbleType.kBothRumble, rumble);
+        } catch (Exception e) {}
+    }
+
+    public static void RUMBLERUMBLE2(double rumble) {
+        try {
+            driver1Com.setRumble(RumbleType.kBothRumble, rumble);
         } catch (Exception e) {}
     }
 }

@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.RumbleRumble;
+import frc.robot.commands.RumbleRumble2;
 
 /**
  * The methods in this class are called automatically corresponding to each mode, as described in
@@ -49,6 +50,7 @@ public class Robot extends TimedRobot {
   @Override
   public void disabledInit() {
     Inputs.getRUMBLE().whileTrue(new RumbleRumble().ignoringDisable(true));
+    Inputs.getRUMBLERUMBLE2().whileTrue(new RumbleRumble2().ignoringDisable(true));
   }
 
   @Override
